@@ -51,8 +51,6 @@ public class VerifyAssertions{
             for (int i=0;i<key.length;i++) {
                 if (key[i].contains("messages")) {
                     List<String> messages = JsonPath.from(response).get("["+index+"]."+key[i]);
-                    System.out.println(value[i]);
-                    System.out.println(messages.get(0));
                     Assert.assertTrue("Validate Messages",messages.contains(value[i]));
                 } else {
                     String toResponse = JsonPath.from(response).get("[" + index + "]." + key[i]);

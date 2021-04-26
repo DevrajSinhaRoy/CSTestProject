@@ -117,7 +117,7 @@ public class ApiClient {
 
     public ApiClient updateExistingBody(String key, String value) {
         // Need to find a way to recoginize which apirequest, domain name and api are we working with
-        apiRequest = payloadFactory.UpdatePayloadFor(relativePath, key, value);
+        apiRequest = payloadFactory.updatePayloadFor(relativePath, key, value);
         return this;
     }
 
