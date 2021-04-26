@@ -3,6 +3,9 @@ package utilities;
 import io.cucumber.messages.internal.com.google.common.base.Preconditions;
 import utilities.Services.Localhost;
 
+/*
+Generic class to create a valid payload for any request and to update the existing payload body
+ */
 public class PayloadFactory {
 
     private String serviceUrl=null;

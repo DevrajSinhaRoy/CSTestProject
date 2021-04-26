@@ -16,6 +16,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 
+/*
+One common class to handle all the requests and carry out the verification of the resposnes related to all types of Request
+ */
 public class ApiClient {
 
     public String BASEURL = null;

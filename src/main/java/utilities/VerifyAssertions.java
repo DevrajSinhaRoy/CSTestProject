@@ -8,6 +8,8 @@ import utilities.POJO.ValidateBatchApiRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/* Class to verify the assesrtions of the response */
 public class VerifyAssertions{
     ApiClient apiClient;
     String response;
