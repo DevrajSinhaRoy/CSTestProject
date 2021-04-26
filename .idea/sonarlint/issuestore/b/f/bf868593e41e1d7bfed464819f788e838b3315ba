@@ -1,0 +1,17 @@
+
+M
+java:S1068"+Remove this unused "ccyPair" private field.(Ø¶şùÿÿÿÿ8‹Ø/
+O
+java:S1068	"-Remove this unused "direction" private field.(„Éôáøÿÿÿÿ8‹Ø/
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(†ø±Îøÿÿÿÿ8ìæŒØ/
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ùµõ
+J
+java:S1068"(Remove this unused "type" private field.(–î†ûÿÿÿÿ8‹Ø/
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ıŞêÿøÿÿÿÿ8‹Ø/
+L
+java:S1068
+"/Remove this unused "legalEntity" private field.(²¢ğÁ8‹Ø/
+I
+java:S1068",Remove this unused "customer" private field.(ğ‰¬8Åı‰Ø/

@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="6" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="35" time="3.724">
+<testcase classname="Tests for /validate POST api" name="Verify that validate POST call returns correct responses" time="2.223">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I hit the POST api.....................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify the validate POST call responses for valuedate and Tradedate variations" time="0.045">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set valuedate as "2017-08-18"........................................passed
+And I set tradedate as "2017-08-19".........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Value date 2017-08-18 cannot be null and it has to be after trade date 2017-08-19".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify the validate POST call responses for valuedate and Tradedate variations 2" time="0.039">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set valuedate as "2017-08-14"........................................passed
+And I set tradedate as "2017-08-14".........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Value date 2017-08-14 cannot be null and it has to be after trade date 2017-08-14".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify the validate POST call responses for valuedate and Tradedate variations 3" time="0.039">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set valuedate as "2017-08-13"........................................passed
+And I set tradedate as "2017-08-15".........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Value date [2017-08-13] cannot fall on Saturday/Sunday".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify the validate POST call responses for valuedate and Tradedate variations 4" time="0.037">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set valuedate as "2017-08-12"........................................passed
+And I set tradedate as "2017-08-15".........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Value date [2017-08-12] cannot fall on Saturday/Sunday".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only given counterparties are acceptable" time="0.044">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set customer as "PLUTO1".............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only given counterparties are acceptable 2" time="0.036">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set customer as "PLUTO2".............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only given counterparties are acceptable 3" time="0.041">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set customer as "PLUTO3".............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Counterparty [PLUTO3] is not supported. Supported counterparties: [[PLUTO2, PLUTO1]]".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only given counterparties are acceptable 4" time="0.054">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set customer as "dummy123"...........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Counterparty [dummy123] is not supported. Supported counterparties: [[PLUTO2, PLUTO1]]".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only ISO 4217 certified currency types are accpeted" time="0.035">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set ccypair as "EUREUR"..............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only ISO 4217 certified currency types are accpeted 2" time="0.03">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set ccypair as "USDINR"..............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only ISO 4217 certified currency types are accpeted 3" time="0.03">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set ccypair as "ABCEUR"..............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Invalid currency pair [ABCEUR]"..................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only ISO 4217 certified currency types are accpeted 4" time="0.032">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set ccypair as "EURABC"..............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Invalid currency pair [EURABC]"..................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only ISO 4217 certified currency types are accpeted 5" time="0.035">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set ccypair as "ABCABC"..............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Invalid currency pair [ABCABC]"..................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only ISO 4217 certified currency types are accpeted 6" time="0.039">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set ccypair as "EURUSDEUR"...........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Invalid currency pair [EURUSDEUR]"...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only CSZurich is the accepted LegalEntity" time="0.055">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set legalentity as "CSZurich"........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that only CSZurich is the accepted LegalEntity 2" time="0.03">
+<failure message="The value of status expected:&lt;[ERROR]&gt; but was:&lt;[SUCCESS]&gt;" type="org.junit.ComparisonFailure"><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set legalentity as "NASDAQ"..........................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................failed
+And I get the messages as "legalEntiry [NASDAQ] is not support. Supported legalEntiry: [CSZurich]".skipped
+
+StackTrace:
+org.junit.ComparisonFailure: The value of status expected:<[ERROR]> but was:<[SUCCESS]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at utilities.VerifyAssertions.parameterValue(VerifyAssertions.java:44)
+	at stepDefinitions.ValidateSteps.verifyResponseValues(ValidateSteps.java:61)
+	at ✽.I get the status as "ERROR"(file:///Users/devraj.roy/Documents/Deployment/CSTEST/src/test/resources/apitests/Apivalidation.feature:62)
+]]></failure>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that spot, Forward product types are the acceptable types" time="0.026">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set type as "Spot"...................................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that spot, Forward product types are the acceptable types 2" time="0.027">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set type as "Forward"................................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that spot, Forward product types are the acceptable types 3" time="0.013">
+<failure message="Status Code expected:&lt;200&gt; but was:&lt;400&gt;" type="java.lang.AssertionError"><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I set type as "MutualFunds"............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................failed
+And I get the status as "ERROR".............................................skipped
+And I get the messages as "ProductType [MutualFunds] is not support. Supported ProductType ids : [Forward, Spot, VanillaOption]".skipped
+
+StackTrace:
+java.lang.AssertionError: Status Code expected:<200> but was:<400>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:647)
+	at utilities.VerifyAssertions.statusCode(VerifyAssertions.java:24)
+	at stepDefinitions.ValidateSteps.verifyCorrectResponse(ValidateSteps.java:51)
+	at ✽.I get 200 response code(file:///Users/devraj.roy/Documents/Deployment/CSTEST/src/test/resources/apitests/Apivalidation.feature:73)
+]]></failure>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that VanillaOption is acceptable Option product types" time="0.025">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "EUROPEAN"...............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that VanillaOption is acceptable Option product types 2" time="0.028">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that VanillaOption is acceptable Option product types 3" time="0.024">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "CANADIAN"...............................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Invalid option style [ CANADIAN ]. Valid option styles are: [AMERICAN, EUROPEAN]".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify that VanillaOption is acceptable Option product types 4" time="0.029">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "INDIAN".................................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Invalid option style [ INDIAN ]. Valid option styles are: [AMERICAN, EUROPEAN]".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type" time="0.028">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-27".................................passed
+And I set tradedate as "2017-08-26".........................................passed
+And I set expiryDate as "2017-08-28"........................................passed
+And I set premiumDate as "2017-08-29".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS"...........................................passed
+And I get the messages as "null"............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type 2" time="0.034">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-23".................................passed
+And I set tradedate as "2017-08-23".........................................passed
+And I set expiryDate as "2017-08-23"........................................passed
+And I set premiumDate as "2017-08-29".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Expiry date 2017-08-23 has to be after trade date 2017-08-23".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type 3" time="0.021">
+<failure message="The value of status expected:&lt;[ERROR]&gt; but was:&lt;[SUCCESS]&gt;" type="org.junit.ComparisonFailure"><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-27".................................passed
+And I set tradedate as "2017-08-27".........................................passed
+And I set expiryDate as "2017-08-28"........................................passed
+And I set premiumDate as "2017-08-29".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................failed
+And I get the messages as "excerciseStartDate 2017-08-27 has to be after tradeDate  2017-08-27".skipped
+
+StackTrace:
+org.junit.ComparisonFailure: The value of status expected:<[ERROR]> but was:<[SUCCESS]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at utilities.VerifyAssertions.parameterValue(VerifyAssertions.java:44)
+	at stepDefinitions.ValidateSteps.verifyResponseValues(ValidateSteps.java:61)
+	at ✽.I get the status as "ERROR"(file:///Users/devraj.roy/Documents/Deployment/CSTEST/src/test/resources/apitests/Apivalidation.feature:108)
+]]></failure>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type 4" time="0.022">
+<failure message="The value of status expected:&lt;[ERROR]&gt; but was:&lt;[SUCCESS]&gt;" type="org.junit.ComparisonFailure"><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-23".................................passed
+And I set tradedate as "2017-08-27".........................................passed
+And I set expiryDate as "2017-08-29"........................................passed
+And I set premiumDate as "2017-08-29".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................failed
+And I get the messages as "excerciseStartDate 2017-08-23 has to be after the tradeDate 2017-08-27".skipped
+
+StackTrace:
+org.junit.ComparisonFailure: The value of status expected:<[ERROR]> but was:<[SUCCESS]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at utilities.VerifyAssertions.parameterValue(VerifyAssertions.java:44)
+	at stepDefinitions.ValidateSteps.verifyResponseValues(ValidateSteps.java:61)
+	at ✽.I get the status as "ERROR"(file:///Users/devraj.roy/Documents/Deployment/CSTEST/src/test/resources/apitests/Apivalidation.feature:108)
+]]></failure>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type 5" time="0.022">
+<failure message="The value of status expected:&lt;[ERROR]&gt; but was:&lt;[SUCCESS]&gt;" type="org.junit.ComparisonFailure"><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-30".................................passed
+And I set tradedate as "2017-08-27".........................................passed
+And I set expiryDate as "2017-08-29"........................................passed
+And I set premiumDate as "2017-08-29".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................failed
+And I get the messages as "excerciseStartDate 2017-08-30 has to be before the expiryDate 2017-08-29".skipped
+
+StackTrace:
+org.junit.ComparisonFailure: The value of status expected:<[ERROR]> but was:<[SUCCESS]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at utilities.VerifyAssertions.parameterValue(VerifyAssertions.java:44)
+	at stepDefinitions.ValidateSteps.verifyResponseValues(ValidateSteps.java:61)
+	at ✽.I get the status as "ERROR"(file:///Users/devraj.roy/Documents/Deployment/CSTEST/src/test/resources/apitests/Apivalidation.feature:108)
+]]></failure>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type 6" time="0.03">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-30".................................passed
+And I set tradedate as "2017-08-27".........................................passed
+And I set expiryDate as "2017-09-01"........................................passed
+And I set premiumDate as "2017-08-29".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Expiry date 2017-09-01 has to be before delivery date 2017-08-30".passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validate POST api" name="Verify VanillaOption trades for AMERICAN type 7" time="0.032">
+<failure message="" type="java.lang.AssertionError"><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validate" api...............................................passed
+And the header "content-type" as "json".....................................passed
+When I update the existing body for type as VanillaOption...................passed
+And I set style as "AMERICAN"...............................................passed
+And I set exerciseStartDate as "2017-08-30".................................passed
+And I set tradedate as "2017-08-27".........................................passed
+And I set expiryDate as "2017-08-29"........................................passed
+And I set premiumDate as "2017-09-01".......................................passed
+And I set deliveryDate as "2017-08-30"......................................passed
+And I hit the POST api......................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "ERROR".............................................passed
+And I get the messages as "Premium date 2017-09-01 has to be before delivery date 2017-08-30".failed
+
+StackTrace:
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at org.junit.Assert.assertFalse(Assert.java:75)
+	at utilities.VerifyAssertions.parameterValue(VerifyAssertions.java:33)
+	at stepDefinitions.ValidateSteps.verifyResponseValues(ValidateSteps.java:61)
+	at ✽.I get the messages as "Premium date 2017-09-01 has to be before delivery date 2017-08-30"(file:///Users/devraj.roy/Documents/Deployment/CSTEST/src/test/resources/apitests/Apivalidation.feature:109)
+]]></failure>
+</testcase>
+<testcase classname="Tests for /validateBatch api" name="Verify that validate POST call returns correct responses for 1 entity" time="0.078">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validateBatch" api..........................................passed
+And the header "content-type" as "json".....................................passed
+When I hit the POST api.....................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS" for 1 request.............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validateBatch api" name="Verify batch validation with multiple entities" time="0.028">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validateBatch" api..........................................passed
+And the header "content-type" as "json".....................................passed
+And I create a new entity with customer as "PLUTO2" for batch request.......passed
+When I hit the POST api.....................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS" for 1 request.............................passed
+And I get the status as "SUCCESS" for 2 request.............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validateBatch api" name="Verify batch validation with multiple entities 2" time="0.041">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validateBatch" api..........................................passed
+And the header "content-type" as "json".....................................passed
+And I create a new entity with customer as "PLUTO3" for batch request.......passed
+When I hit the POST api.....................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS" for 1 request.............................passed
+And I get the status;messages as "ERROR;Counterparty [PLUTO3] is not supported. Supported counterparties: [[PLUTO2, PLUTO1]]" for 2 request.passed
+]]></system-out>
+</testcase>
+<testcase classname="Tests for /validateBatch api" name="Verify batch validation with multiple entities 3" time="0.048">
+<system-out><![CDATA[Given I have the "localhost" domain.........................................passed
+And I have the "validateBatch" api..........................................passed
+And the header "content-type" as "json".....................................passed
+And I create a new entity with ccypair as "ABCABC" for batch request........passed
+When I hit the POST api.....................................................passed
+Then I get 200 response code................................................passed
+And I get the status as "SUCCESS" for 1 request.............................passed
+And I get the status;messages as "ERROR;Invalid currency pair [ABCABC]" for 2 request.passed
+]]></system-out>
+</testcase>
+</testsuite>
